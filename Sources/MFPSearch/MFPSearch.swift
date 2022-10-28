@@ -47,7 +47,6 @@ public struct MFPSearch: View {
             }
             .navigationTitle(title)
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar { navigationTrailingContent }
             .toolbar { navigationLeadingContent }
         }
     }
