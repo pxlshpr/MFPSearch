@@ -69,7 +69,6 @@ extension MFPSearch.ViewModel {
             Haptics.errorFeedback()
             loadingFailed = true
         } else {
-            Haptics.warningFeedback()
             loadingFailed = false
         }
         if case .firstAttempt = loadingStatus {
@@ -97,6 +96,7 @@ extension MFPSearch.ViewModel {
         searchTask?.cancel()
         isLoadingPage = false
         
+        Haptics.feedback(style: .soft)
         startLoadContentTask()
 //        simulateLoadingTask()
     }
