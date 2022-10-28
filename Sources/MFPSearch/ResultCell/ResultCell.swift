@@ -3,92 +3,13 @@ import MFPScraper
 import ActivityIndicatorView
 import PrepViews
 
-extension MFPSearch.ResultCell {
+struct ResultCell: View {
+    @StateObject var viewModel: ViewModel
     
-    class ViewModel: ObservableObject {
-        
-        @Published var result: MFPSearchResultFood
-        @Published var processedFood: MFPProcessedFood? = nil
-        
-        init(result: MFPSearchResultFood) {
-            self.result = result
-        }
+    init(result: MFPSearchResultFood) {
+        _viewModel = StateObject(wrappedValue: ViewModel(result: result))
     }
-}
 
-extension MFPSearch.ResultCell.ViewModel {
-    var name: String {
-        result.name
-    }
-    
-    var energy: String {
-        "\(result.calories.cleanAmount) kcal"
-    }
-    
-    var numberOfSizes: Int? {
-        processedFood?.sizes.count
-    }
-    
-    var numberOfMicros: Int? {
-        processedFood?.nutrients.count
-    }
-    
-    var sizes: [MFPProcessedFood.Size]? {
-        processedFood?.sizes
-    }
-    
-    var nutrients: [MFPProcessedFood.Nutrient]? {
-        processedFood?.nutrients
-    }
-    
-    var sizesString: String? {
-        guard let sizes = processedFood?.sizes, !sizes.isEmpty else {
-            return nil
-        }
-        let string = sizes.map { $0.name }.joined(separator: ", ")
-        return string.isEmpty ? nil : string
-    }
-    
-    var nutrientsString: String? {
-        guard let nutrients = processedFood?.nutrients, !nutrients.isEmpty else {
-            return nil
-        }
-        let string = nutrients.map { $0.type.description.lowercased() }.joined(separator: ", ")
-        return string.isEmpty ? nil : string
-    }
-    
-    var detailString: String? {
-        if let brand = processedFood?.brand {
-            if let detail = processedFood?.detail {
-                return "\(brand) • \(detail)"
-            } else {
-                return brand
-            }
-        } else if let detail = processedFood?.detail {
-            return detail
-        } else if !result.detail.isEmpty {
-            return result.detail
-        }
-        return nil
-    }
-    
-    var hasProcessedFood: Bool {
-        processedFood != nil
-    }
-}
-
-//MARK: - Cell
-extension MFPSearch {
-    struct ResultCell: View {
-        @StateObject var viewModel: ViewModel
-        
-        init(result: MFPSearchResultFood) {
-            _viewModel = StateObject(wrappedValue: ViewModel(result: result))
-        }
-    }
-}
-
-extension MFPSearch.ResultCell {
     var body: some View {
         HStack {
             HStack {
@@ -286,74 +207,4 @@ extension MFPSearch.ResultCell {
             }
         }
     }
-}
-
-extension MFPSearch.ResultCell.ViewModel: NutritionSummaryProvider {
-    var forMeal: Bool {
-        false
-    }
-    
-    var isMarkedAsCompleted: Bool {
-        false
-    }
-    
-    var showQuantityAsSummaryDetail: Bool {
-        false
-    }
-    
-    var energyAmount: Double {
-        result.calories
-    }
-    
-    var carbAmount: Double {
-        result.carbs
-    }
-    
-    var fatAmount: Double {
-        result.fat
-    }
-    
-    var proteinAmount: Double {
-        result.protein
-    }
-}
-
-public struct MFPSearchResultCellPreview: View {
-    
-    public var body: some View {
-        NavigationView {
-            List {
-                MFPSearch.ResultCell(result: MockResult.Banana)
-                MFPSearch.ResultCell(result: MockResult.Banana)
-                MFPSearch.ResultCell(result: MockResult.Banana)
-                MFPSearch.ResultCell(result: MockResult.Banana)
-                MFPSearch.ResultCell(result: MockResult.Banana)
-            }
-//            .listStyle(.plain)
-            .navigationTitle("Search Results")
-            .navigationBarTitleDisplayMode(.inline)
-        }
-    }
-    
-    public init() { }
-}
-
-struct MFPSearchResultCell_Previews: PreviewProvider {
-    static var previews: some View {
-        MFPSearchResultCellPreview()
-    }
-}
-
-struct MockResult {
-    static let Banana = MFPSearchResultFood(
-        name: "Double Quarter Pounder",
-        detail: "1 medium",
-        servingSize: "",
-        isVerified: false,
-        calories: 89,
-        carbs: 23,
-        fat: 0,
-        protein: 1,
-        url: "/food/calories/banana-1774572771"
-    )
 }

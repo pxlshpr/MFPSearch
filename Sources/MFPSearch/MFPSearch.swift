@@ -2,15 +2,7 @@ import SwiftUI
 import ActivityIndicatorView
 import SwiftHaptics
 import MFPScraper
-
-let colorHexKeyboardLight = "CDD0D6"
-let colorHexKeyboardDark = "303030"
-let colorHexSearchTextFieldDark = "535355"
-let colorHexSearchTextFieldLight = "FFFFFF"
-
-let testLoadingStatus = LoadingStatus.retry(attemptNumber: 3, maxAttempts: 3, reason: .timeout)
-
-//TODO: Start using SearchableView—remove the blur layer, but consider adding it indicator view or at least have it as another component
+import SwiftUISugar
 
 public struct MFPSearch: View {
     
@@ -21,6 +13,9 @@ public struct MFPSearch: View {
     @FocusState var isFocused: Bool
     @State var showingSearchLayer: Bool = false
     @State var showingSearchActivityIndicator = true
+
+    @State var timer = Timer.publish(every: 0.02, on: .main, in: .common).autoconnect()
+    @State var progressValue: Double = 0
     
     public init(didSelectFood: @escaping (MFPProcessedFood) -> ()) {
         let searchViewModel = ViewModel(selectedFoodHandler: didSelectFood)
@@ -39,7 +34,6 @@ public struct MFPSearch: View {
         }
         .onAppear {
             focusOnSearchTextField()
-//            viewModel.loadingStatus = testLoadingStatus
         }
         .onDisappear {
             searchViewModel.cancelSearching()
@@ -158,9 +152,6 @@ public struct MFPSearch: View {
             }.frame(maxHeight: .infinity, alignment: .top)
         }
     }
-    
-    @State var timer = Timer.publish(every: 0.02, on: .main, in: .common).autoconnect()
-    @State var progressValue: Double = 0
     
     var progressView: some View {
         ProgressView(value: progressValue, total: 10) {
