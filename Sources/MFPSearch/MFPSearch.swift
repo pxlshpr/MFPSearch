@@ -109,7 +109,7 @@ As we rely on their servers for this information, its accuracy and the speed at 
 We are in no way affiliated with MyFitnessPal, and do not claim ownership over any of the data they provide.
 """)
                 .italic()
-                .foregroundColor(.secondary)
+                .foregroundColor(Color(.quaternaryLabel))
             }
         }
     }
