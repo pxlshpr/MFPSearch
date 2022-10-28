@@ -31,23 +31,19 @@ public struct MFPSearch: View {
     }
     
     var content: some View {
-        SearchableView(
-            searchText: $searchViewModel.searchText,
-            prompt: "Search or enter website link",
-            didSubmit: searchDidSubmit
-        ) {
-            navigationView
-        }
+        navigationView
     }
     
     var navigationView: some View {
         NavigationView {
             Group {
-//                if showingSearchActivityIndicator {
-//                    searchStatus
-//                } else {
+                SearchableView(
+                    searchText: $searchViewModel.searchText,
+                    prompt: "Search or enter website link",
+                    didSubmit: searchDidSubmit
+                ) {
                     list
-//                }
+                }
             }
             .navigationTitle(title)
             .navigationBarTitleDisplayMode(.inline)
@@ -94,10 +90,14 @@ public struct MFPSearch: View {
             Section {
                 Text("""
 Search over 11 million foods in the [MyFitnessPal](https://www.myfitnesspal.com) database.
-
-As we rely on their servers for this information, its accuracy and the speed at which it is retrieved cannot be guaranteed. The availability of this feature might also be intermittently unavilabile.
 """)
                 .foregroundColor(.secondary)
+                .listRowSeparator(.hidden)
+                Text("""
+As we rely on their servers for this information, its accuracy and the speed at which it is retrieved cannot be guaranteed. The availability of this feature might also be intermittently unavilabile.
+""")
+                .foregroundColor(Color(.tertiaryLabel))
+                .listRowSeparator(.hidden)
             }
 //            Section {
 //                Text("""
