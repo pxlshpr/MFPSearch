@@ -177,8 +177,7 @@ struct MFPFoodView: View {
     var foodLabelSection: some View {
         if mfpFoodViewModel.shouldShowFoodLabel {
             Section {
-                Text("Bring FoodLabel back")
-//                FoodLabel(dataSource: mfpFoodViewModel)
+                mfpFoodViewModel.foodLabel
             }
             .padding()
             .transition(.opacity)

@@ -17,6 +17,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/pxlshpr/FoodLabel", from: "0.0.28"),
         .package(url: "https://github.com/pxlshpr/MFPScraper", from: "0.0.57"),
+        .package(url: "https://github.com/pxlshpr/PrepDataTypes", from: "0.0.24"),
         .package(url: "https://github.com/pxlshpr/PrepViews", from: "0.0.1"),
         .package(url: "https://github.com/pxlshpr/SwiftHaptics", from: "0.1.3"),
         .package(url: "https://github.com/pxlshpr/SwiftUISugar", from: "0.0.206"),
@@ -30,6 +31,7 @@ let package = Package(
             dependencies: [
                 .product(name: "FoodLabel", package: "foodlabel"),
                 .product(name: "MFPScraper", package: "mfpscraper"),
+                .product(name: "PrepDataTypes", package: "prepdatatypes"),
                 .product(name: "PrepViews", package: "prepviews"),
                 .product(name: "SwiftHaptics", package: "swifthaptics"),
                 .product(name: "SwiftUISugar", package: "swiftuisugar"),
