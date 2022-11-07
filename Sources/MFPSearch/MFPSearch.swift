@@ -118,19 +118,21 @@ We are in no way affiliated with MyFitnessPal, and do not claim ownership over a
     var activityCell: some View {
         HStack {
             ActivityIndicatorView(isVisible: .constant(true), type: .opacityDots())
+                .frame(width: 27, height: 27)
                 .foregroundColor(.secondary)
-                .frame(width: 30, height: 30)
+                .offset(y: -2)
         }
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: .infinity, alignment: .center)
     }
     
     var loadMoreCell: some View {
         Button {
             searchViewModel.loadNextPage()
         } label: {
-            Text("Load more…")
+            Image(systemName: "ellipsis")
+                .font(.system(size: 30))
                 .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.vertical, 10)
+                .foregroundColor(.accentColor)
         }
     }
 }

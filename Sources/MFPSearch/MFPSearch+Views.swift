@@ -1,5 +1,6 @@
 import SwiftUI
 import ActivityIndicatorView
+import SwiftUISugar
 
 extension MFPSearch {
     
@@ -13,17 +14,10 @@ extension MFPSearch {
     
     var doneButton: some View {
         Button {
+            searchViewModel.cancelSearching()
             dismiss()
         } label: {
-            Text("Done")
-        }
-    }
-    
-    var cancelButton: some View {
-        Button {
-            searchViewModel.cancelSearching()
-        } label: {
-            Image(systemName: "xmark.circle.fill")
+            closeButtonLabel
         }
     }    
 }

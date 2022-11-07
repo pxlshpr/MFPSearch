@@ -71,9 +71,13 @@ extension MFPSearch.ViewModel {
         } else {
             loadingFailed = false
         }
+        
+//        if case .firstAttempt = loadingStatus {
+//            isFirstAttempt = true
+//        } else {
+//            isFirstAttempt = false
+//        }
         if case .firstAttempt = loadingStatus {
-            isFirstAttempt = true
-        } else {
             isFirstAttempt = false
         }
         
