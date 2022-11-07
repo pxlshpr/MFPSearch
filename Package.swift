@@ -15,12 +15,12 @@ let package = Package(
             targets: ["MFPSearch"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/pxlshpr/FoodLabel", from: "0.0.28"),
+        .package(url: "https://github.com/pxlshpr/FoodLabel", from: "0.0.29"),
         .package(url: "https://github.com/pxlshpr/MFPScraper", from: "0.0.57"),
-        .package(url: "https://github.com/pxlshpr/PrepDataTypes", from: "0.0.24"),
-        .package(url: "https://github.com/pxlshpr/PrepViews", from: "0.0.1"),
+        .package(url: "https://github.com/pxlshpr/PrepDataTypes", from: "0.0.110"),
+        .package(url: "https://github.com/pxlshpr/PrepViews", from: "0.0.21"),
         .package(url: "https://github.com/pxlshpr/SwiftHaptics", from: "0.1.3"),
-        .package(url: "https://github.com/pxlshpr/SwiftUISugar", from: "0.0.206"),
+        .package(url: "https://github.com/pxlshpr/SwiftUISugar", from: "0.0.224"),
         .package(url: "https://github.com/exyte/ActivityIndicatorView", from: "1.1.0"),
     ],
     targets: [

@@ -39,7 +39,7 @@ public struct MFPSearch: View {
             Group {
                 SearchableView(
                     searchText: $searchViewModel.searchText,
-                    prompt: "Search or enter website link",
+                    promptSuffix: "or enter website link",
                     didSubmit: searchDidSubmit
                 ) {
                     list
