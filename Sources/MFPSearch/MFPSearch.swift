@@ -40,6 +40,7 @@ public struct MFPSearch: View {
                 SearchableView(
                     searchText: $searchViewModel.searchText,
                     promptSuffix: "or enter website link",
+                    focusOnAppear: true,
                     didSubmit: searchDidSubmit
                 ) {
                     list
